@@ -1,11 +1,13 @@
+const dotenv = require('dotenv')
+dotenv.config()
 const express = require("express");
 const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
 const Post = require("../models/postSchema");
 const cloudinary = require("../cloudnary/cloudnary");
 
-const uri = process.env.MONGODB_URI;
-// const uri = "mongodb://localhost/postsdb";
+// const uri = process.env.MONGODB_URI;
+const uri = "mongodb://localhost/postsdb";
 
 
 mongoose.connect(uri, (err)=>{
@@ -17,13 +19,9 @@ mongoose.connect(uri, (err)=>{
 });
 
 
-const router = express();
-
-const cors = require('cors');
-router.use(cors());
 
 
-
+const router = express.Router();
 
 router.use(bodyparser.json());
 router.use(bodyparser.urlencoded({ extended: false }));
@@ -37,10 +35,12 @@ router.get("/posts", async (req, res) => {
     }
 });
 
-router.post("/posts", async (req, res) => {
+router.post("/posts",  (req, res) => {
   try {
-  // const file = req.files.postimage
-    // cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
+    // console.log(req,"-----------")
+    const file = req.files.postimage;
+    cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
+      // console.log(result)
       
         let date = new Date;
         let finalDate = date + "";
@@ -54,10 +54,10 @@ router.post("/posts", async (req, res) => {
           location,
           likes: 35,
           date: today,
-          postimage: req.body.postimage
+          postimage: result.url
         });
         res.send(user);
-      //})
+      })
     } catch (e) {
       console.log(e)
     }
