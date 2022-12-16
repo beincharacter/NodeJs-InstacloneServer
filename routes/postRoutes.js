@@ -37,7 +37,7 @@ router.get("/posts", async (req, res) => {
     }
 });
 
-router.post("/posts", (req, res) => {
+router.post("/posts", async (req, res) => {
   try {
   // const file = req.files.postimage
     // cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
