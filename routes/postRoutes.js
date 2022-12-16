@@ -18,7 +18,7 @@ mongoose.connect(uri, (err)=>{
 
 
 const cors = require('cors');
-app.use(cors({
+router.use(cors({
     origin: '*'
 }));
 
