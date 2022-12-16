@@ -39,8 +39,8 @@ router.get("/posts", async (req, res) => {
 
 router.post("/posts", (req, res) => {
   try {
-  const file = req.files.postimage
-    cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
+  // const file = req.files.postimage
+    // cloudinary.uploader.upload(file.tempFilePath, async (err, result) => {
       
         let date = new Date;
         let finalDate = date + "";
@@ -54,10 +54,10 @@ router.post("/posts", (req, res) => {
           location,
           likes: 35,
           date: today,
-          postimage: result.url
+          postimage: req.body.postimage
         });
         res.send(user);
-      })
+      //})
     } catch (e) {
       console.log(e)
     }
