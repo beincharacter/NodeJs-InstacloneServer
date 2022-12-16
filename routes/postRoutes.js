@@ -23,6 +23,9 @@ mongoose.connect(uri, (err)=>{
 
 const router = express.Router();
 
+const cors = require("cors");
+router.use(cors())
+
 router.use(bodyparser.json());
 router.use(bodyparser.urlencoded({ extended: false }));
 
