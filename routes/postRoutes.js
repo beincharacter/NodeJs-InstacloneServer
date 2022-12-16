@@ -16,6 +16,13 @@ mongoose.connect(uri, (err)=>{
   }
 });
 
+
+const cors = require('cors');
+app.use(cors({
+    origin: '*'
+}));
+
+
 const router = express.Router();
 
 router.use(bodyparser.json());
