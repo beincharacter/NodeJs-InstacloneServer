@@ -17,7 +17,7 @@ mongoose.connect(uri, (err)=>{
 });
 
 
-const router = express.Router();
+const router = express();
 
 const cors = require('cors');
 router.use(cors());
