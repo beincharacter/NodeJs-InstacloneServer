@@ -6,8 +6,8 @@ const mongoose = require("mongoose");
 const Post = require("../models/postSchema");
 const cloudinary = require("../cloudnary/cloudnary");
 
-// const uri = process.env.MONGODB_URI;
-const uri = "mongodb://localhost/postsdb";
+const uri = process.env.MONGODB_URI;
+// const uri = "mongodb://localhost/postsdb";
 
 
 mongoose.connect(uri, (err)=>{
